@@ -1,0 +1,305 @@
+/* =========================
+   ROOT VARIABLES
+========================= */
+:root {
+  --primary: #1e3a8a;
+  --accent: #f59e0b;
+  --text: #111827;
+  --bg: #f8fafc;
+  --radius: 14px;
+  --shadow: 0 12px 24px rgba(0,0,0,0.15);
+  --title-size: clamp(1.8rem, 4vw, 3rem);
+}
+
+/* =========================
+   GLOBAL STYLES
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+img {
+  width: 100%;
+  display: block;
+  border-radius: var(--radius);
+}
+
+/* =========================
+   HEADER (FLEXBOX)
+========================= */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow);
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--primary);
+}
+
+.header-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.btn {
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.btn--primary {
+  background: var(--primary);
+  color: #fff;
+}
+
+.btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--primary);
+}
+
+.btn--ghost:hover {
+  background: rgba(30,58,138,0.1);
+}
+
+.btn--cart {
+  background: var(--accent);
+  color: #fff;
+  position: relative;
+}
+
+.btn--added {
+  background: #16a34a;
+  color: #fff;
+  cursor: default;
+}
+
+/* Badge */
+.badge {
+  background: crimson;
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 999px;
+  position: absolute;
+  top: -6px;
+  right: -6px;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+.hero {
+  position: relative;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #020617, #1e3a8a);
+  color: #fff;
+  border-radius: var(--radius);
+  margin: 2rem;
+  overflow: hidden;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  background: rgba(245,158,11,0.25);
+  border-radius: 50%;
+}
+
+.hero::before {
+  top: -80px;
+  left: -80px;
+}
+
+.hero::after {
+  bottom: -80px;
+  right: -80px;
+}
+
+.hero-title {
+  font-size: var(--title-size);
+  font-weight: 800;
+}
+
+.hero-subtitle {
+  max-width: 600px;
+  margin: 1rem 0 2rem;
+  opacity: 0.9;
+}
+
+/* =========================
+   FILTER PILLS
+========================= */
+.filters {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  flex-wrap: wrap;
+}
+
+.pill {
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  border: 2px solid var(--primary);
+  background: transparent;
+  color: var(--primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pill:hover:not(.active),
+.pill:focus-visible {
+  background: var(--primary);
+  color: #fff;
+}
+
+.pill.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* =========================
+   PRODUCT GRID (CSS GRID)
+========================= */
+.products {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+/* =========================
+   PRODUCT CARD
+========================= */
+.card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 32px rgba(0,0,0,0.18);
+}
+
+.card h3 {
+  margin: 0.75rem 0 0.25rem;
+}
+
+.price {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.price .old {
+  text-decoration: line-through;
+  color: #9ca3af;
+  margin-left: 0.5rem;
+}
+
+.rating {
+  margin: 0.5rem 0;
+}
+
+/* =========================
+   CARD VARIANTS
+========================= */
+
+/* SALE */
+.card.sale::before {
+  content: "SALE";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius);
+  font-size: 0.75rem;
+}
+
+/* LOW STOCK */
+.card.low-stock::after {
+  content: "LOW STOCK";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: crimson;
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius);
+  font-size: 0.75rem;
+}
+
+/* HIGH RATING */
+.card[data-rating^="4.8"] {
+  border: 2px solid #22c55e;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   RESPONSIVE (MOBILE)
+========================= */
+@media (max-width: 640px) {
+  .header {
+    padding: 1rem;
+  }
+
+  .btn {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .hero {
+    padding: 2rem 1.5rem;
+    margin: 1rem;
+  }
+}
